@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import chats from './data/data.js';
+import userRoutes from './routes/user.routes.js';
 
 const app = express();
 app.use(express.json());
@@ -28,4 +29,17 @@ const connectDB = await mongoose.connect(process.env.MONGO_URI)
 })
 .catch((error) => {
 console.error("Error connecting to MongoDB:", error);
+});
+
+app.use("/api/auth" , userRoutes);
+
+app.use((err, req, res, next) => {
+    const statusCode = err.statusCode || 500;
+    const message = err.message || 'Internal Server Error';
+
+    res.status(statusCode).json({ 
+        success: false,
+        message: message,
+        statusCode: statusCode
+    });
 });
