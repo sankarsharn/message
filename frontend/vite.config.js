@@ -10,7 +10,7 @@ export default defineConfig({
   ],
   server: {
     proxy: {
-      '/api': 'http://localhost:5000', // forward /api calls to Express
+      '/api': 'http://localhost:3000', // forward /api calls to Express
     },
   },
 })

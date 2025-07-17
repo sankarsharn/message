@@ -1,11 +1,17 @@
-import { BrowserRouter } from "react-router-dom"
-function App() {
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
+import Signin from "./pages/signin"
+import Signup from "./pages/signup"
+import Dashboard from "./pages/dashboard"
 
+function App() {
   return (
     <BrowserRouter>
-      <h1 class="text-3xl font-bold underline">
-      Hello world!
-      </h1>
+      <Routes>
+        <Route path="/" element={<Navigate to="/signup" />} />
+        <Route path="/login" element={<Signin />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Routes>
     </BrowserRouter>
   )
 }
